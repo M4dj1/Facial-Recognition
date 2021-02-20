@@ -98,20 +98,27 @@ def sorted_alphanumeric(data):
 def console():
     def show():
         def process(filename: str = None) -> None:
-            image = mpimg.imread(filename)
-            fig.add_subplot(1, 10, i)
-            plt.title('Neighbor' + str(i))
-            plt.imshow(image, cmap='gray')
-
-        fig = plt.figure()
-        i = 1
-        for file in Knn:
-            process('Faces/TrainSet/' + str(file) + '.jpg')
-            i = i + 1
-        image = mpimg.imread('Faces/TestSet/' + str(TestPicture) + '.jpg')
-        fig.add_subplot(2, 10, 1)
-        plt.title('Test Image')
-        plt.imshow(image, cmap='gray')
+            image = Image.open(filename)
+            ax[j][i].set_title("Knn = "+str(valueKNN[j-1]), color='red')
+            ax[j][i].imshow(image, cmap='gray')
+        fig, ax = plt.subplots(nrows=6, ncols=10)
+        for x in range(6):
+            for y in range(10):
+                ax[x][y].set_axis_off()
+        j , i = [0 , 0]
+        image = Image.open('Faces/TestSet/' + str(TestPicture) + '.jpg')
+        ax[j][i].set_title("Test Image", color='Green')
+        ax[j][i].set_axis_off()
+        ax[j][i].imshow(image, cmap='gray')
+        j += 1
+        for K in Knn:
+            for file in K:
+                process('Faces/TrainSet/' + str(file) + '.jpg')
+                i += 1
+            j = j + 1
+            i = 0
+        figManager = plt.get_current_fig_manager()
+        figManager.window.showMaximized()
         plt.show()
     weberK = float(input("Enter Weber's K value : "))
     print()
@@ -130,9 +137,11 @@ def console():
 
     TestPicture = input("Enter Test picture index (1 -> 40) or '0' to exit : ")
     while TestPicture != '0' :
-        valueKNN = int(input("Enter KNN value : "))
         imgOutHist = csaltp_testing(TestPicture + '.jpg', weberK)
-        Knn = np.argpartition(calcDistance(np.array(trainSet), imgOutHist), valueKNN)[:valueKNN] + 1
+        Knn = []
+        valueKNN = np.array([1 ,3 ,5, 7, 10])
+        for i in range(valueKNN.shape[0]):
+            Knn.append(np.argpartition(calcDistance(np.array(trainSet), imgOutHist), valueKNN[i])[:valueKNN[i]] + 1)
         show()
         TestPicture = input("Enter Test picture index (1 -> 40) or '0' to exit : ")
 
