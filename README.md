@@ -15,4 +15,4 @@ Tested on : ORL face database(Testset = 40 Pictures, Trainset = 360 Pictures), c
 
 
 
-.2![Test Image 1](Test.png)
+-![Test Image 1](Test.png)
