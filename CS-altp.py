@@ -132,7 +132,7 @@ def console():
         imgMat = np.array(imgOri)
         csaltp_training(imgMat, weberK, test='true')
         sys.stdout.write("\r")
-    sys.stdout.write("Training Done!!\n") # this ends the progress bar
+    sys.stdout.write("Training Done!!\n")
     print()
 
     TestPicture = input("Enter Test picture index (1 -> 40) or '0' to exit : ")
