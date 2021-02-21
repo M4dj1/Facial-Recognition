@@ -113,7 +113,7 @@ def console():
         j += 1
         for K in Knn:
             for file in K:
-                process('Faces/TrainSet/' + str(file) + '.jpg')
+                process('Faces/TrainSet/' + str(file+1) + '.jpg')
                 i += 1
             j = j + 1
             i = 0
@@ -139,9 +139,10 @@ def console():
     while TestPicture != '0' :
         imgOutHist = csaltp_testing(TestPicture + '.jpg', weberK)
         Knn = []
+        distTrainTest = calcDistance(np.array(trainSet), imgOutHist)
         valueKNN = np.array([1 ,3 ,5, 7, 10])
         for i in range(valueKNN.shape[0]):
-            Knn.append(np.argpartition(calcDistance(np.array(trainSet), imgOutHist), valueKNN[i])[:valueKNN[i]] + 1)
+            Knn.append(np.argpartition(distTrainTest, range(valueKNN[i]))[:valueKNN[i]])
         show()
         TestPicture = input("Enter Test picture index (1 -> 40) or '0' to exit : ")
 
