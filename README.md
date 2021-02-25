@@ -1,5 +1,5 @@
 # Facial-Recognition-Using-CS_ALTP
-# By: MADJI Abderrahmane, ZEREG Lokmane
+## By: MADJI Abderrahmane, ZEREG Lokmane
 Face recognition using adaptive local ternary patterns method / Wankou Yang, Zhenyu Wang ,Baochang Zhang
 Tested on : ORL face database(Testset = 40 Pictures, Trainset = 360 Pictures), classifier -> KNN
 
