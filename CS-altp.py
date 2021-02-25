@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as n
 import pylab as plt
 import sys
 import re
